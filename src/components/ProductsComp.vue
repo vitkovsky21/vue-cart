@@ -19,9 +19,9 @@
                     <p class="item__model">{{ cartProduct.model }}</p>
                 </div>
                 <div class="item__amount">
-                    <span>-</span>
+                    <span @click="decrementProducts(cartProduct.id)">-</span>
                     <span>{{ cartProduct.amount }}</span>
-                    <span>+</span>
+                    <span @click="incrementProducts(cartProduct.id)">+</span>
                 </div>
                 <div class="item__cost">{{ formatPrice(cartProduct.price) }} ₽</div>
                 <img src="../assets/cross.png" alt="#" class="item__cross" />
@@ -46,6 +46,7 @@
 
 <script lang="ts">
 import { mapState } from 'vuex';
+import store from '@/store';
 
 export default {
     computed: mapState({
@@ -55,6 +56,12 @@ export default {
         formatPrice(value: number) {
             let val = (value / 1).toFixed(2).replace(' ', ' ')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+        },
+        incrementProducts(id: number) {
+            store.commit('INCREMENT_PRODUCTS', id)
+        },
+        decrementProducts(id: number) {
+            store.commit('DECREMENT_PRODUCTS', id)
         }
     }
 }

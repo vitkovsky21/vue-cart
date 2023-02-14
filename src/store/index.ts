@@ -11,7 +11,7 @@ const store = createStore({
           "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия",
         model: "Артикул: G2H1065",
         price: 12644,
-        amount: 1,
+        amount: 0,
       },
       {
         id: 2,
@@ -21,7 +21,7 @@ const store = createStore({
           "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия",
         model: "Артикул: G2H1065",
         price: 12644,
-        amount: 1,
+        amount: 0,
       },
       {
         id: 3,
@@ -31,7 +31,7 @@ const store = createStore({
           "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия",
         model: "Артикул: G2H1065",
         price: 12644,
-        amount: 1,
+        amount: 0,
       },
     ],
     swiperProducts: [
@@ -87,14 +87,20 @@ const store = createStore({
     cart: {
       amount: 0,
       sum: 0,
-    }
+    },
   },
   mutations: {
     INCREMENT_PRODUCTS(state, value) {
-      state.cartProducts[value].amount++;
-      state.cart.amount++
+      state.cartProducts[value - 1].amount++;
+      state.cart.sum += state.cartProducts[value - 1].price;
+      state.cart.amount++;
     },
-  }
+    DECREMENT_PRODUCTS(state, value) {
+      state.cartProducts[value - 1].amount--;
+      state.cart.sum -= state.cartProducts[value - 1].price;
+      state.cart.amount--;
+    },
+  },
 });
 
 export default store;

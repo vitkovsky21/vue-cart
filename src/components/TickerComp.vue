@@ -6,7 +6,7 @@
         <h2 class="ticker__title">Итого</h2>
         <div class="ticker__row">
             <span>Сумма заказа</span>
-            <span class="ticker__row-data">{{ cart.price }} ₽</span>
+            <span class="ticker__row-data">{{ formatPrice(cart.sum) }} ₽</span>
         </div>
         <div class="ticker__row">
             <span>Количество</span>
@@ -19,7 +19,7 @@
         <hr class="hr-line" />
         <div class="ticker__result">
             <span class="ticker__result-title">Стоимость товаров</span>
-            <span class="ticker__result-data">50 576 ₽</span>
+            <span class="ticker__result-data">{{ formatPrice(cart.sum) }} ₽</span>
         </div>
         <div class="btn btn-main">Оформить заказ</div>
         <div class="btn btn-second">Купить в 1 клик</div>
@@ -34,6 +34,12 @@ export default {
     computed: mapState({
         cart: (state: any) => state.cart
     }),
+    methods: {
+        formatPrice(value: number) {
+            let val = (value / 1).toFixed(2).replace(' ', ' ')
+            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+        },
+    }
 }
 </script>
 
