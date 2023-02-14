@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+#app {
+  font-family: "Lato", sans-serif;
+  max-width: 1280px;
+  width: 1440px;
+  height: 1764px;
+
+  margin: 0 auto;
+  padding: 2rem;
+
+  font-weight: normal;
+
+  background: #ffffff;
+  color: #1f2432;
+}
+
+.hr-line {
+  width: 85%;
+  height: 1px;
+  background: #aeb0b6;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  background: #0069b4;
+  border-radius: 4px;
+  width: 85%;
+  height: 12%;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 145%;
+  color: #ffffff;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
