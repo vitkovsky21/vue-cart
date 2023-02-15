@@ -107,7 +107,7 @@ const store = createStore({
     TOGGLE_INSTALL(state) {
       state.cart.install = !state.cart.install;
     },
-    REMOVE_PRODUCTS(state, value) {
+    REMOVE_PRODUCT(state, value) {
       if (state.cartProducts[value - 1]) {
         state.cart.sum -=
           state.cartProducts[value - 1].price *
@@ -121,6 +121,10 @@ const store = createStore({
         state.cart.amount = state.cart.amount - state.cartProducts[0].amount;
         state.cartProducts.splice(0, 1);
       }
+    },
+    REMOVE_PRODUCTS(state) {
+      state.cartProducts = [];
+      state.cart = state.cart = { amount: 0, sum: 0, install: false };
     },
     FETCH_PRODUCTS(state) {
       return http

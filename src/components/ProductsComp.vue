@@ -7,7 +7,7 @@
         <div class="navbar">
             <h2 class="navbar__title">Ваша корзина</h2>
             <div class="navbar__amount">{{ cartProducts.length }} товара</div>
-            <div class="navbar__remove">Очистить корзину</div>
+            <div class="navbar__remove" @click="removeProducts()">Очистить корзину</div>
         </div>
 
         <div v-for="cartProduct in cartProducts" :key="cartProduct.id">
@@ -24,7 +24,7 @@
                     <span @click="incrementProducts(cartProduct.id)">+</span>
                 </div>
                 <div class="item__cost">{{ formatPrice(cartProduct.price) }} ₽</div>
-                <img @click="removeProducts(cartProduct.id)" src="../assets/cross.png" alt="#" class="item__cross" />
+                <img @click="removeProduct(cartProduct.id)" src="../assets/cross.png" alt="#" class="item__cross" />
             </div>
             <hr class="hr-line" />
         </div>
@@ -66,9 +66,12 @@ export default {
         installToggle() {
             store.commit('TOGGLE_INSTALL')
         },
-        removeProducts(id: number) {
-            store.commit('REMOVE_PRODUCTS', id)
+        removeProduct(id: number) {
+            store.commit('REMOVE_PRODUCT', id)
         },
+        removeProducts() {
+            store.commit('REMOVE_PRODUCTS')
+        }
     }
 }
 </script>
