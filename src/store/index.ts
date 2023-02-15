@@ -1,12 +1,13 @@
 import { createStore } from "vuex";
 import http from "../base/http-common";
+const pngs: any = import.meta.globEager('/src/assets/*.png');
 
 const store = createStore({
   state: {
     cartProducts: [
       {
         id: 1,
-        img: "src/assets/item.png",
+        img: pngs["/src/assets/item.png"].default,
         title: "Вытяжное устройство G2H",
         about:
           "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия",
@@ -16,7 +17,7 @@ const store = createStore({
       },
       {
         id: 2,
-        img: "src/assets/item-2.png",
+        img: pngs["/src/assets/item-2.png"].default,
         title: "Вытяжное устройство BXC",
         about:
           "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия",
@@ -26,7 +27,7 @@ const store = createStore({
       },
       {
         id: 3,
-        img: "src/assets/item-3.png",
+        img: pngs["/src/assets/item-3.png"].default,
         title: "Вытяжное устройство GHN",
         about:
           "12-72/168 м3/ч / гидрорегулируемый расход / от датчика присутствия",
@@ -38,7 +39,7 @@ const store = createStore({
     swiperProducts: [
       {
         id: 1,
-        img: "src/assets/swiper-product-1.png",
+        img: pngs["/src/assets/swiper-product-1.png"].default,
         title: "BXC",
         about: "Вытяжное устройство для механической системы вентиляции",
         priceRub: "6 848 ₽ - 56 584 ₽",
@@ -46,7 +47,7 @@ const store = createStore({
       },
       {
         id: 2,
-        img: "src/assets/swiper-product-2.png",
+        img: pngs["/src/assets/swiper-product-2.png"].default,
         title: "G2H",
         about: "Вытяжное устройство для механической системы вентиляции",
         priceRub: "6 848 ₽ - 56 584 ₽",
@@ -54,7 +55,7 @@ const store = createStore({
       },
       {
         id: 3,
-        img: "src/assets/swiper-product-3.png",
+        img: pngs["/src/assets/swiper-product-3.png"].default,
         title: "GHN",
         about: "Вытяжное устройство c датчиком присутствия",
         priceRub: "6 848 ₽ - 56 584 ₽",
@@ -62,7 +63,7 @@ const store = createStore({
       },
       {
         id: 4,
-        img: "src/assets/swiper-product-1.png",
+        img: pngs["/src/assets/swiper-product-1.png"].default,
         title: "TDA",
         about: "Вытяжное устройство c датчиком присутствия",
         priceRub: "6 848 ₽ - 56 584 ₽",
@@ -70,7 +71,7 @@ const store = createStore({
       },
       {
         id: 5,
-        img: "src/assets/swiper-product-3.png",
+        img: pngs["/src/assets/swiper-product-3.png"].default,
         title: "GHN",
         about: "Вытяжное устройство для механической системы вентиляции",
         priceRub: "6 848 ₽ - 56 584 ₽",
@@ -78,7 +79,7 @@ const store = createStore({
       },
       {
         id: 6,
-        img: "src/assets/swiper-product-2.png",
+        img: pngs["/src/assets/swiper-product-2.png"].default,
         title: "TDA",
         about: "Вытяжное устройство для механической системы вентиляции",
         priceRub: "6 848 ₽ - 56 584 ₽",
