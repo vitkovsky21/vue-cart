@@ -14,7 +14,7 @@
         </div>
         <div class="ticker__row">
             <span>Установка</span>
-            <span class="ticker__row-data">нет</span>
+            <span class="ticker__row-data">{{ cart.install ? "да" : "нет" }}</span>
         </div>
         <hr class="hr-line" />
         <div class="ticker__result">

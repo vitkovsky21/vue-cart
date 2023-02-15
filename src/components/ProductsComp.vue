@@ -31,7 +31,7 @@
 
 
         <div class="install">
-            <input type="checkbox" class="install__checkbox">
+            <input type="checkbox" class="install__checkbox" @click="installToggle()">
             <img src="../assets/instrument.png" alt="#" class="install__image" />
             <div class="install__container">
                 <h4 class="install__title">Установка</h4>
@@ -62,6 +62,9 @@ export default {
         },
         decrementProducts(id: number) {
             store.commit('DECREMENT_PRODUCTS', id)
+        },
+        installToggle() {
+            store.commit('TOGGLE_INSTALL')
         }
     }
 }

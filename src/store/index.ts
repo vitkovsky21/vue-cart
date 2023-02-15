@@ -87,6 +87,7 @@ const store = createStore({
     cart: {
       amount: 0,
       sum: 0,
+      install: false,
     },
   },
   mutations: {
@@ -99,6 +100,9 @@ const store = createStore({
       state.cartProducts[value - 1].amount--;
       state.cart.sum -= state.cartProducts[value - 1].price;
       state.cart.amount--;
+    },
+    TOGGLE_INSTALL(state) {
+      state.cart.install = !state.cart.install;
     },
   },
 });
