@@ -97,13 +97,26 @@ const store = createStore({
       state.cart.amount++;
     },
     DECREMENT_PRODUCTS(state, value) {
-      state.cartProducts[value - 1].amount--;
-      state.cart.sum -= state.cartProducts[value - 1].price;
-      state.cart.amount--;
+      if (state.cartProducts[value - 1].amount > 0) {
+        state.cartProducts[value - 1].amount--;
+        state.cart.sum -= state.cartProducts[value - 1].price;
+        state.cart.amount--;
+      }
     },
     TOGGLE_INSTALL(state) {
       state.cart.install = !state.cart.install;
     },
+    REMOVE_PRODUCTS(state, value) {
+      if (state.cartProducts[value - 1]) {
+        state.cart.sum -= state.cartProducts[value - 1].price * state.cartProducts[value - 1].amount;
+        state.cart.amount = state.cart.amount - state.cartProducts[value - 1].amount;
+        state.cartProducts.splice(value - 1, 1);
+      } else {
+        state.cart.sum -= state.cartProducts[0].price * state.cartProducts[0].amount;
+        state.cart.amount = state.cart.amount - state.cartProducts[0].amount;
+        state.cartProducts.splice(0, 1);
+      }
+    }
   },
 });
 

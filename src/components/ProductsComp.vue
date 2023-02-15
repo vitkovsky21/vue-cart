@@ -6,12 +6,12 @@
     <div class="cart__container">
         <div class="navbar">
             <h2 class="navbar__title">Ваша корзина</h2>
-            <div class="navbar__amount">4 товара</div>
+            <div class="navbar__amount">{{ cartProducts.length }} товара</div>
             <div class="navbar__remove">Очистить корзину</div>
         </div>
 
-        <div class="cart__items" v-for="cartProduct in cartProducts" :key="cartProduct.id">
-            <div class="item">
+        <div v-for="cartProduct in cartProducts" :key="cartProduct.id">
+            <div class="item" v-if="cartProducts">
                 <img :src="cartProduct.img" alt="#" class="item__image" />
                 <div class="item__container">
                     <h4 class="item__title">{{ cartProduct.title }}</h4>
@@ -24,7 +24,7 @@
                     <span @click="incrementProducts(cartProduct.id)">+</span>
                 </div>
                 <div class="item__cost">{{ formatPrice(cartProduct.price) }} ₽</div>
-                <img src="../assets/cross.png" alt="#" class="item__cross" />
+                <img @click="removeProducts(cartProduct.id)" src="../assets/cross.png" alt="#" class="item__cross" />
             </div>
             <hr class="hr-line" />
         </div>
@@ -65,6 +65,9 @@ export default {
         },
         installToggle() {
             store.commit('TOGGLE_INSTALL')
+        },
+        removeProducts(id: number) {
+            store.commit('REMOVE_PRODUCTS', id)
         }
     }
 }
@@ -120,6 +123,7 @@ export default {
     text-decoration-line: underline;
 
     color: #797B86;
+    cursor: pointer;
 }
 
 .item {
@@ -180,6 +184,8 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    cursor: pointer;
 }
 
 .item__amount span {
@@ -209,6 +215,7 @@ export default {
     right: .3rem;
     width: 12px;
     height: 12px;
+    cursor: pointer;
 }
 
 .hr-line {

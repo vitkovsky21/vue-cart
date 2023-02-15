@@ -43,6 +43,8 @@ export default {
   width: 143px;
   height: 21px;
   position: relative;
+  
+  cursor: pointer;
 }
 
 .location__main {
