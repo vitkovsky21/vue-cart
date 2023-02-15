@@ -68,7 +68,7 @@ export default {
         },
         removeProducts(id: number) {
             store.commit('REMOVE_PRODUCTS', id)
-        }
+        },
     }
 }
 </script>

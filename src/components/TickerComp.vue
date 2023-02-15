@@ -21,14 +21,15 @@
             <span class="ticker__result-title">Стоимость товаров</span>
             <span class="ticker__result-data">{{ formatPrice(cart.sum) }} ₽</span>
         </div>
-        <div class="btn btn-main">Оформить заказ</div>
-        <div class="btn btn-second">Купить в 1 клик</div>
+        <div class="btn btn-main" @click="fetchProducts()">Оформить заказ</div>
+        <div class="btn btn-second" @click="fetchProducts()">Купить в 1 клик</div>
     </div>
 
 </template>
 
 <script lang="ts">
 import { mapState } from 'vuex';
+import store from '@/store';
 
 export default {
     computed: mapState({
@@ -39,6 +40,11 @@ export default {
             let val = (value / 1).toFixed(2).replace(' ', ' ')
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
         },
+        fetchProducts() {
+            store.commit("FETCH_PRODUCTS")
+            store.commit('CLEAR_DATA')
+            alert("Спасибо за покупку!")
+        }
     }
 }
 </script>

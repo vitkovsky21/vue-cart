@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import http from "../base/http-common";
 
 const store = createStore({
   state: {
@@ -108,15 +109,33 @@ const store = createStore({
     },
     REMOVE_PRODUCTS(state, value) {
       if (state.cartProducts[value - 1]) {
-        state.cart.sum -= state.cartProducts[value - 1].price * state.cartProducts[value - 1].amount;
-        state.cart.amount = state.cart.amount - state.cartProducts[value - 1].amount;
+        state.cart.sum -=
+          state.cartProducts[value - 1].price *
+          state.cartProducts[value - 1].amount;
+        state.cart.amount =
+          state.cart.amount - state.cartProducts[value - 1].amount;
         state.cartProducts.splice(value - 1, 1);
       } else {
-        state.cart.sum -= state.cartProducts[0].price * state.cartProducts[0].amount;
+        state.cart.sum -=
+          state.cartProducts[0].price * state.cartProducts[0].amount;
         state.cart.amount = state.cart.amount - state.cartProducts[0].amount;
         state.cartProducts.splice(0, 1);
       }
-    }
+    },
+    FETCH_PRODUCTS(state) {
+      return http
+        .post("/somewhere", state.cart)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch(() => {
+          console.log("Ошибка, очевидно :)");
+        });
+    },
+    CLEAR_DATA(state) {
+      state.cartProducts.forEach((product) => (product.amount = 0));
+      state.cart = { amount: 0, sum: 0, install: false };
+    },
   },
 });
 
